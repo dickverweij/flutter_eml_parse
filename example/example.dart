@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:eml_parse/eml_parse.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eml_parse/src/parser.dart';
 
 void main() {
   runApp(const MyApp());
