@@ -3,88 +3,14 @@ library eml_parse;
 import 'dart:convert';
 import 'dart:typed_data';
 
-
 import 'package:intl/intl.dart';
 
 import 'address.dart';
 import 'charset.dart';
+import 'data_classes.dart';
 import 'utils.dart';
 
 const defaultCharset = 'utf-8';
-
-class EmlParseOptions {
-  final bool headersOnly;
-
-  const EmlParseOptions({
-    this.headersOnly = false,
-  });
-}
-
-class EmlEmailAttachment {
-  final String id;
-  final String name;
-  final String contentType;
-  final bool inline;
-  final Uint8List data;
-  final String data64;
-
-  EmlEmailAttachment({
-    required this.id,
-    required this.name,
-    required this.contentType,
-    required this.inline,
-    required this.data,
-    required this.data64,
-  });
-}
-
-class EmlEmailAddress {
-  final String name;
-  final String email;
-
-  EmlEmailAddress({
-    required this.name,
-    required this.email,
-  });
-}
-
-class EmlEmailHeader {
-  final String name;
-  final String value;
-
-  EmlEmailHeader({
-    required this.name,
-    required this.value,
-  });
-}
-
-class EmlParseResult {
-  final DateTime date;
-  final String subject;
-  final EmlEmailAddress? from;
-  final EmlEmailAddress? to;
-  final EmlEmailAddress? cc;
-  final List? headers;
-  final String? text;
-  final List? textheaders;
-  final String? html;
-  final List? htmlheaders;
-  final List<EmlEmailAttachment>? attachments;
-
-  EmlParseResult({
-    required this.date,
-    required this.subject,
-    this.from,
-    this.to,
-    this.cc,
-    this.headers,
-    this.text,
-    this.textheaders,
-    this.html,
-    this.htmlheaders,
-    this.attachments,
-  });
-}
 
 Future<EmlParseResult> parseEml(String eml,
     {EmlParseOptions options = const EmlParseOptions()}) async {
@@ -92,9 +18,9 @@ Future<EmlParseResult> parseEml(String eml,
   return EmlParseResult(
     date: map['date'] as DateTime,
     subject: map['subject'] as String? ?? "",
-    from: _createEmailAddress(map["from"] as Map<String, dynamic>?),
-    to: _createEmailAddress(map["to"] as Map<String, dynamic>?),
-    cc: _createEmailAddress(map["cc"] as Map<String, dynamic>?),
+    from: _createEmailAddresses(map["from"]),
+    to: _createEmailAddresses(map["to"]),
+    cc: _createEmailAddresses(map["cc"]),
     headers: toEmailHeaders(map['headers'] as Map<String, dynamic>?),
     text: map['text'],
     textheaders: toEmailHeaders(map['textheaders'] as Map<String, dynamic>?),
@@ -126,14 +52,29 @@ toEmailHeaders(Map<String, dynamic>? map) {
       .toList();
 }
 
-EmlEmailAddress? _createEmailAddress(Map<String, dynamic>? map) {
-  if (map == null || (map["name"] == null && map["email"] == null)) {
+List<EmlEmailAddress>? _createEmailAddresses(dynamic mapOrList) {
+  if (mapOrList == null ||
+      (mapOrList is Map &&
+          mapOrList["name"] == null &&
+          mapOrList["email"] == null) ||
+      (mapOrList is List && mapOrList.isEmpty)) {
     return null;
   }
-  return EmlEmailAddress(
-    name: map['name'] ?? '',
-    email: map['email'] ?? "",
-  );
+  if (mapOrList is! Map) {
+    final list = mapOrList
+        .map((emailMap) => EmlEmailAddress(
+              name: emailMap["name"] ?? '',
+              email: emailMap["email"] ?? "",
+            ))
+        .cast<EmlEmailAddress>();
+    return list.toList();
+  }
+  return [
+    EmlEmailAddress(
+      name: mapOrList['name'] ?? '',
+      email: mapOrList['email'] ?? "",
+    )
+  ];
 }
 
 Map<String, dynamic> _parse(

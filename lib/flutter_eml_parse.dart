@@ -1,7 +1,8 @@
-export 'src/parser.dart'
+export 'src/data_classes.dart'
     show
-        parseEml,
+        EmlEmailHeader,
         EmlEmailAddress,
         EmlEmailAttachment,
         EmlParseOptions,
         EmlParseResult;
+export 'src/parser.dart' show parseEml;

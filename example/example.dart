@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_eml_parse/src/data_classes.dart';
 import 'package:flutter_eml_parse/src/parser.dart';
 
 void main() {
