@@ -53,6 +53,12 @@ class MyApp extends StatelessWidget {
             'Attachment: ${attachment.name} ${attachment.contentType} ${attachment.data.length}');
       }
     }
+
+    if (result.headers != null && result.headers!.isNotEmpty) {
+      for (EmlEmailHeader header in result.headers!) {
+        print('${header.name}: ${header.value}');
+      }
+    }
     return result;
   }
 }

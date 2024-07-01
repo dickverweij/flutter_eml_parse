@@ -8,21 +8,9 @@ Future main() async {
 
   EmlParseResult result = await parseEml(eml);
 
-  print('From: ${result.from}');
-  print('To: ${result.to}');
-  print('Subject: ${result.subject}');
-  print('Text: ${result.text}');
-  print('Html: ${result.html}');
+  expect(result.from, '');
+  expect(result.to, '');
+  expect(result.subject, '');
 
-  if (result.attachments != null) {
-    for (EmlEmailAttachment attachment in result.attachments!) {
-      print('Attachment: ${attachment.name} (${attachment.contentType})');
-    }
-  }
 
-  if (result.headers != null) {
-    for (EmlEmailHeader header in result.headers!) {
-      print('${header.name}: ${header.value}');
-    }
-  }
 }

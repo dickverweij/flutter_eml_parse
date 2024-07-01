@@ -1,3 +1,4 @@
 ## 0.0.1
-
-* TODO: Describe initial release.
+Initial port from eml-parse (js source)
+## 0.0.2
+Added data classes for headers and add test
