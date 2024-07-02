@@ -28,7 +28,7 @@ Future<EmlParseResult> parseEml(String eml,
     htmlheaders: toEmailHeaders(map['htmlheaders'] as Map<String, dynamic>?),
     attachments: (map['attachments'] as List?)
         ?.map((attachment) => EmlEmailAttachment(
-              id: attachment['id'],
+              id: attachment['id'] ?? attachment['name'] ?? '<no-id>',
               name: attachment['name'],
               contentType: attachment['contentType'],
               inline: attachment['inline'],

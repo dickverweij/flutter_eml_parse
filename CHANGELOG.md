@@ -4,3 +4,5 @@ Initial port from eml-parse (js source)
 Added data classes for headers and add test
 ## 0.0.3
 Fixed bug not awaiting certain attachment parsing
+## 0.0.4 
+Fixed bug with null attachment id
