@@ -1,6 +1,6 @@
 name: flutter_eml_parse
 description: "A Flutter EML parser"
-version: 0.0.3
+version: 0.0.4
 repository: https://github.com/dickverweij/flutter_eml_parse
 
 environment:
