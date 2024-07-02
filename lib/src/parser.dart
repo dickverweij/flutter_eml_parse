@@ -548,7 +548,7 @@ Future<Map<String, dynamic>> _read(Map<String, dynamic> data) async {
       } else {
         if (!boundaryBlock['part'].containsKey('body')) {
         } else if (boundaryBlock['part']['body'] is String) {
-          _append(boundaryBlock['part']['headers'],
+          await _append(boundaryBlock['part']['headers'],
               boundaryBlock['part']['body'], result);
         } else {
           // keep multipart/alternative
