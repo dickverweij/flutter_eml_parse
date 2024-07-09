@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-This package is a port of [eml-pars-js](https://www.npmjs.com/package/eml-parse-js) wich reads and parses email messages saved in MSG and EML format. It also reads attachments from the saved message.
+This package is a port of [eml-parse-js](https://www.npmjs.com/package/eml-parse-js) wich reads and parses email messages saved in (clear text) EML format. It also reads attachments from the saved message.
 
 ## Features
 
