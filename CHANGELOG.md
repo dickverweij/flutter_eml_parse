@@ -6,3 +6,5 @@ Added data classes for headers and add test
 Fixed bug not awaiting certain attachment parsing
 ## 0.0.4 
 Fixed bug with null attachment id
+## 0.0.5
+dependancy update 

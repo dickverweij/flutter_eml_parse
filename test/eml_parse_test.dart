@@ -11,6 +11,4 @@ Future main() async {
   expect(result.from, '');
   expect(result.to, '');
   expect(result.subject, '');
-
-
 }
