@@ -6,6 +6,21 @@ class EmlParseOptions {
   const EmlParseOptions({
     this.headersOnly = false,
   });
+
+  @override
+  String toString() {
+    return 'EmlParseOptions{headersOnly: $headersOnly}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is EmlParseOptions && other.headersOnly == headersOnly;
+  }
+
+  @override
+  int get hashCode => headersOnly.hashCode;
 }
 
 class EmlEmailAttachment {
@@ -24,6 +39,34 @@ class EmlEmailAttachment {
     required this.data,
     required this.data64,
   });
+
+  @override
+  String toString() {
+    return 'Attachment: $name $contentType ${data.length}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is EmlEmailAttachment &&
+        other.id == id &&
+        other.name == name &&
+        other.contentType == contentType &&
+        other.inline == inline &&
+        other.data == data &&
+        other.data64 == data64;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        contentType.hashCode ^
+        inline.hashCode ^
+        data.hashCode ^
+        data64.hashCode;
+  }
 }
 
 class EmlEmailAddress {
@@ -34,6 +77,23 @@ class EmlEmailAddress {
     required this.name,
     required this.email,
   });
+
+  @override
+  String toString() {
+    return '$name <$email>';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is EmlEmailAddress &&
+        other.name == name &&
+        other.email == email;
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ email.hashCode;
 }
 
 class EmlEmailHeader {
@@ -44,6 +104,23 @@ class EmlEmailHeader {
     required this.name,
     required this.value,
   });
+
+  @override
+  String toString() {
+    return '$name: $value';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is EmlEmailHeader &&
+        other.name == name &&
+        other.value == value;
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ value.hashCode;
 }
 
 class EmlParseResult {
@@ -72,4 +149,5 @@ class EmlParseResult {
     this.htmlheaders,
     this.attachments,
   });
+  
 }

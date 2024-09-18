@@ -369,9 +369,8 @@ Future _append(Map<String, dynamic> headers, dynamic content,
   } else if (encoding == 'quoted-printable') {
     content = await _unquotePrintable(content as String, charset);
   } else if (encoding != null &&
-          charset != 'utf8' &&
-          encoding.indexOf('binary') == 0 ||
-      encoding.indexOf('8bit') == 0) {
+      charset != 'utf8' &&
+      (encoding.indexOf('binary') == 0 || encoding.indexOf('8bit') == 0)) {
     //'8bit', 'binary', '8bitmime', 'binarymime'
     content = await decode(content as Uint8List, charset);
   }

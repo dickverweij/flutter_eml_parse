@@ -8,3 +8,5 @@ Fixed bug not awaiting certain attachment parsing
 Fixed bug with null attachment id
 ## 0.0.5
 dependancy update 
+## 0.0.6
+added test with embedded pdf to test attachments
