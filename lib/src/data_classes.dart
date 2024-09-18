@@ -42,7 +42,7 @@ class EmlEmailAttachment {
 
   @override
   String toString() {
-    return 'Attachment: $name $contentType ${data.length}';
+    return '$name $contentType ${data.length} ${data64.substring(0, 32)}...';
   }
 
   @override
@@ -149,5 +149,9 @@ class EmlParseResult {
     this.htmlheaders,
     this.attachments,
   });
-  
+
+  @override
+  String toString() {
+    return 'EmlParseResult:\ndate: $date\nsubject: $subject\nfrom: $from\nto: $to cc: $cc \nheaders:\n\t${headers?.join('\n\t')}\n\ntext:\n$text\n\ntextheaders:\n\t${textheaders?.join('\n\t')}\n\nhtml:\n$html\n\nhtmlheaders:\n\t${htmlheaders?.join('\n\t')}\nattachments:\n\t${attachments?.join('\n\t')}';
+  }
 }
