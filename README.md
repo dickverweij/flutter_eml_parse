@@ -1,3 +1,6 @@
+
+[Audio deepdive about this project](https://notebooklm.google.com/notebook/dcef1146-f26e-457f-acd6-f070c9ebbc0a/audio)
+
 <!--
 This README describes the package. If you publish this package to pub.dev,
 this README's contents appear on the landing page for your package.
