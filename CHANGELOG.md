@@ -10,3 +10,5 @@ Fixed bug with null attachment id
 dependancy update 
 ## 0.0.6
 added test with embedded pdf to test attachments
+## 0.0.7 
+fixed dependency
